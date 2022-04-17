@@ -652,9 +652,9 @@ function NameFields() {
 > 
 > `useId` supports an `identifierPrefix` to prevent collisions in multi-root apps. To configure, see the options for [`hydrateRoot`](/docs/react-dom-client.html#hydrateroot) and [`ReactDOMServer`](/docs/react-dom-server.html).
 
-## Library Hooks {#library-hooks}
+## 类库的 Hooks {#library-hooks}
 
-The following Hooks are provided for library authors to integrate libraries deeply into the React model, and are not typically used in application code.
+以下 `Hooks` 是为库的作者提供的，以便将库深度整合到 `React` 模型中，通常不在应用程序代码中使用。
 
 ### `useSyncExternalStore` {#usesyncexternalstore}
 
@@ -662,20 +662,20 @@ The following Hooks are provided for library authors to integrate libraries deep
 const state = useSyncExternalStore(subscribe, getSnapshot[, getServerSnapshot]);
 ```
 
-`useSyncExternalStore` is a hook recommended for reading and subscribing from external data sources in a way that's compatible with concurrent rendering features like selective hydration and time slicing.
+`useSyncExternalStore` 是一个 `hook`，推荐用于从外部数据源读取和订阅，其方式与 `concurrent` 渲染功能兼容，如选择性的 `hydration` 和时间切片。
 
-This method returns the value of the store and accepts three arguments:
-- `subscribe`: function to register a callback that is called whenever the store changes.
-- `getSnapshot`: function that returns the current value of the store.
-- `getServerSnapshot`: function that returns the snapshot used during server rendering.
+该方法返回 `store` 的值并接受三个参数：
+- `subscribe`： 注册一个回调的函数，每当 `store` 发生变化时就会调用。
+- `getSnapshot`： 返回 `store` 的当前值的函数。
+- `getServerSnapshot`： 返回服务器渲染时使用的快照的函数。
 
-The most basic example simply subscribes to the entire store:
+最基本的示例只是订阅整个 `store` ：
 
 ```js
 const state = useSyncExternalStore(store.subscribe, store.getSnapshot);
 ```
 
-However, you can also subscribe to a specific field:
+但是，您也可以订阅特定字段：
 
 ```js
 const selectedField = useSyncExternalStore(
@@ -684,7 +684,7 @@ const selectedField = useSyncExternalStore(
 );
 ```
 
-When server rendering, you must serialize the store value used on the server, and provide it to `useSyncExternalStore`. React will use this snapshot during hydration to prevent server mismatches:
+服务端渲染时，必须将服务端使用的 `store` 值序列化，提供给 `useSyncExternalStore`。 `React` 将在 `hydration` 期间使用此快照来防止服务器不匹配：
 
 ```js
 const selectedField = useSyncExternalStore(
@@ -694,13 +694,13 @@ const selectedField = useSyncExternalStore(
 );
 ```
 
-> Note:
+> 注意：
 >
-> `getSnapshot` must return a cached value. If getSnapshot is called multiple times in a row, it must return the same exact value unless there was a store update in between.
+> `getSnapshot` 必须返回一个缓存值。如果连续多次调用 `getSnapshot`，则它必须返回相同的确切值，除非两者之间有存储更新。
 > 
-> A shim is provided for supporting multiple React versions published as `use-sync-external-store/shim`. This shim will prefer `useSyncExternalStore` when available, and fallback to a user-space implementation when it's not.
+> 为支持多个 `React` 版本提供了一个 `shim`，发布为 `use-sync-external-store/shim`。在可用的情况下，这个 `shim` 会选择 `useSyncExternalStore`，而在不可用的情况下，则会回退到 `user-space` 的实现。
 > 
-> As a convenience, we also provide a version of the API with automatic support for memoizing the result of getSnapshot published as `use-sync-external-store/with-selector`.
+> 为方便起见，我们还提供了一个 `API` 版本，该版本自动支持记忆 `getSnapshot` 发布为 `use-sync-external-store/with-selector` 的结果。
 
 ### `useInsertionEffect` {#useinsertioneffect}
 
@@ -708,8 +708,8 @@ const selectedField = useSyncExternalStore(
 useInsertionEffect(didUpdate);
 ```
 
-The signature is identical to `useEffect`, but it fires synchronously _before_ all DOM mutations. Use this to inject styles into the DOM before reading layout in [`useLayoutEffect`](#uselayouteffect). Since this hook is limited in scope, this hook does not have access to refs and cannot schedule updates.
+其函数签名与 `useEffect` 相同，但它在所有 `DOM` 变化之前同步触发。在 `useLayoutEffect` 中读取布局之前，使用该 `Hook` 将样式注入 `DOM` 中。因为该 `Hook` 的作用范围有限，所以它不能访问引用，也不能调度更新。
 
-> Note:
+> 注意：
 >
-> `useInsertionEffect` should be limited to css-in-js library authors. Prefer [`useEffect`](#useeffect) or [`useLayoutEffect`](#uselayouteffect) instead.
+> `useInsertionEffect` 应该只限于 `css-in-js` 库的作者。最好用[`useEffect`](#useeffect)或[`useLayoutEffect`](#uselayouteffect)代替。
