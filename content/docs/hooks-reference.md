@@ -669,7 +669,7 @@ const state = useSyncExternalStore(subscribe, getSnapshot[, getServerSnapshot]);
 - `getSnapshot`： 返回 `store` 的当前值的函数。
 - `getServerSnapshot`： 返回服务器渲染时使用的快照的函数。
 
-最基本的示例只是订阅整个 `store` ：
+最基本的示例只是订阅整个 `store`：
 
 ```js
 const state = useSyncExternalStore(store.subscribe, store.getSnapshot);
