@@ -675,7 +675,7 @@ const state = useSyncExternalStore(subscribe, getSnapshot[, getServerSnapshot]);
 const state = useSyncExternalStore(store.subscribe, store.getSnapshot);
 ```
 
-但是，您也可以订阅特定字段：
+但是，你也可以订阅特定字段：
 
 ```js
 const selectedField = useSyncExternalStore(
