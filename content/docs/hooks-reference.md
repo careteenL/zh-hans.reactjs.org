@@ -684,7 +684,7 @@ const selectedField = useSyncExternalStore(
 );
 ```
 
-服务端渲染时，必须将服务端使用的 `store` 值序列化，提供给 `useSyncExternalStore`。 `React` 将在 `hydration` 期间使用此快照来防止服务器不匹配：
+服务端渲染时，必须将服务端使用的 `store` 值序列化，提供给 `useSyncExternalStore`。`React` 将在 `hydration` 期间使用此快照来防止服务器不匹配：
 
 ```js
 const selectedField = useSyncExternalStore(
