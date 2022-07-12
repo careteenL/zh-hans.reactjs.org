@@ -665,9 +665,9 @@ const state = useSyncExternalStore(subscribe, getSnapshot[, getServerSnapshot]);
 `useSyncExternalStore` 是一个 `hook`，推荐用于从外部数据源读取和订阅，其方式与 `concurrent` 渲染功能兼容，如选择性的 `hydration` 和时间切片。
 
 该方法返回 `store` 的值并接受三个参数：
-- `subscribe`： 注册一个回调的函数，每当 `store` 发生变化时就会调用。
-- `getSnapshot`： 返回 `store` 的当前值的函数。
-- `getServerSnapshot`： 返回服务器渲染时使用的快照的函数。
+- `subscribe`：注册一个回调的函数，每当 `store` 发生变化时就会调用。
+- `getSnapshot`：返回 `store` 的当前值的函数。
+- `getServerSnapshot`：返回服务器渲染时使用的快照的函数。
 
 最基本的示例只是订阅整个 `store`：
 
